@@ -1,11 +1,11 @@
-;;; org-drill.el - Self-testing using spaced repetition
+;;; org-drill.el --- Self-testing using spaced repetition -*- coding: utf-8-unix -*-
 ;;;
 ;;; Copyright (C) 2010-2015  Paul Sexton
 ;;;
 ;;; Author: Paul Sexton <eeeickythump@gmail.com>
 ;;; Version: 2.6.1
 ;;; Keywords: flashcards, memory, learning, memorization
-;;; Repository at http://bitbucket.org/eeeickythump/org-drill/
+;;; URL: http://bitbucket.org/eeeickythump/org-drill/
 ;;;
 ;;; This file is not part of GNU Emacs.
 ;;;
@@ -23,8 +23,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;;
 ;;;
-;;; Synopsis
-;;; ========
+;;; Commentary:
 ;;;
 ;;; Within an Org mode outline or outlines, headings and associated content are
 ;;; treated as "flashcards". Spaced repetition algorithms are used to conduct
@@ -41,6 +40,9 @@
 ;;; the student in different ways.
 ;;;
 ;;; See the file README.org for more detailed documentation.
+;;;
+;;;
+;;; Code:
 
 
 (eval-when-compile (require 'cl))
@@ -3513,3 +3515,4 @@ returns its return value."
 
 
 (provide 'org-drill)
+;;; org-drill.el ends here
