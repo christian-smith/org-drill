@@ -1535,7 +1535,7 @@ the current topic."
                         (funcall test))
              (hide-subtree))
            (push (point) drill-sections)))
-       "" 'tree))
+       nil 'tree))
     (reverse drill-sections)))
 
 (defun org-drill-hide-all-subheadings-except (heading-list)
