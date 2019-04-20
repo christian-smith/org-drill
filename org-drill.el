@@ -1,4 +1,3 @@
-;;; -*- coding: utf-8-unix -*-
 ;;; org-drill.el - Self-testing using spaced repetition
 ;;;
 ;;; Copyright (C) 2010-2015  Paul Sexton
