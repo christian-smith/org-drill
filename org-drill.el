@@ -285,6 +285,7 @@ the current item.")
 (defcustom org-drill-card-type-alist
   '((nil org-drill-present-simple-card)
     ("simple" org-drill-present-simple-card)
+    ("compact" org-drill-present-compact-card)
     ("simpletyped" org-drill-present-simple-card-with-typed-answer)
     ("twosided" org-drill-present-two-sided-card nil t)
     ("multisided" org-drill-present-multi-sided-card nil t)
@@ -1537,12 +1538,20 @@ the current topic."
        "" 'tree))
     (reverse drill-sections)))
 
-
 (defun org-drill-hide-all-subheadings-except (heading-list)
   (org-drill-hide-subheadings-if
    (lambda () (let ((drill-heading (org-get-heading t)))
            (not (member drill-heading heading-list))))))
 
+(defun org-drill-hide-all-headings ()
+  (let ((drill-sections nil))
+    (save-excursion
+      (org-map-entries
+       (lambda ()
+         (hide-subtree)
+         (push (point) drill-sections))
+       "" 'tree))
+    (reverse drill-sections)))
 
 (defun org-drill--make-minibuffer-prompt (prompt)
   (let ((status (first (org-drill-entry-status)))
@@ -1924,6 +1933,17 @@ Note: does not actually alter the item."
      (prog1 (org-drill-presentation-prompt)
        (org-drill-hide-subheadings-if 'org-drill-entry-p))))))
 
+(defun org-drill-present-compact-card ()
+  (with-hidden-comments
+   (with-hidden-cloze-hints
+    (with-hidden-cloze-text
+     (org-drill-hide-all-headings)
+     (org-drill--show-latex-fragments)  ; overlay all LaTeX fragments with images
+     (ignore-errors
+       (org-display-inline-images t))
+     (org-cycle-hide-drawers 'all)
+     (prog1 (org-drill-presentation-prompt)
+       (org-drill-hide-subheadings-if 'org-drill-entry-p))))))
 
 (defun org-drill-present-default-answer (reschedule-fn)
   (prog1 (cond
