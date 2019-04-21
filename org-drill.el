@@ -1551,7 +1551,7 @@ the current topic."
        (lambda ()
          (hide-subtree)
          (push (point) drill-sections))
-       "" 'tree))
+       nil 'tree))
     (reverse drill-sections)))
 
 (defun org-drill--make-minibuffer-prompt (prompt)
